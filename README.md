@@ -30,6 +30,7 @@ A modern **Next.js 13+** news application built with **TypeScript** and **Server
 - **SEO Ready:** Metadata, Open Graph, robots.txt, and sitemap.xml for search engines  
 
 <img src="./public/test.png" width="100%"/>
+<img src="./public/mob.png" width="100%"/>
 
 
 ---
