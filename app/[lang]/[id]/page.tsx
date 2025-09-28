@@ -8,7 +8,7 @@ interface Props {
         id: string;
     };
 }
-
+ export const revalidate = 60;
 function getNewsById(id: number): NewsItem | undefined {
     return dummyNewsData.find((n) => n.id === id);
 }

@@ -3,7 +3,6 @@ import dummyNewsData, { NewsItem } from "@/news";
 import NewsCard from "@/app/_components/NewsCard";
 import Pagination from "@/app/_components/Pagination";
 import { notFound } from "next/navigation";
-import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
 interface Props {
