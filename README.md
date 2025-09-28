@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js News App
 
-## Getting Started
+A modern **Next.js 13+** news application built with **TypeScript** and **Server Components**, featuring:
 
-First, run the development server:
+- News listing with category filtering and pagination
+- Article details pages with related articles
+- Search functionality with highlighted keywords
+- SEO-friendly setup including metadata, Open Graph, robots.txt, and sitemap.xml
 
-```bash
+---
+
+## **Table of Contents**
+
+1. [Features](#features)  
+2. [Project Structure](#project-structure)  
+3. [Pages](#pages)  
+4. [Components](#components)  
+5. [SEO Setup](#seo-setup)  
+6. [Getting Started](#getting-started)  
+7. [Future Improvements](#future-improvements)  
+
+---
+
+## **Features**
+
+- **Home Page:** Grid of 12 news items per page with category filter and pagination  
+- **News Detail Page:** Full article content with 3 related articles  
+- **Search Page:** Search results with keyword highlighting and "no results" state  
+- **Server Components:** All pages are server-rendered, no client-side state required  
+- **SEO Ready:** Metadata, Open Graph, robots.txt, and sitemap.xml for search engines  
+
+![News Card](./test.png)
+
+
+---
+
+## **Pages**
+
+### **1. Home Page**
+- URL: `/`  
+- Features:
+  - Grid display of news (3 columns on desktop, 1 on mobile)
+  - Category filter
+  - Pagination  
+- Fully server-rendered using query parameters for category and page (`/?category=Technology&page=1`)  
+
+### **2. News Detail Page**
+- URL: `/news/[id]`  
+- Features:
+  - Full article content
+  - Related articles (up to 3)
+  - Metadata and Open Graph for SEO  
+- Example: `/news/1`  
+
+### **3. Search Page**
+- URL: `/search?q=keyword`  
+- Features:
+  - Search by title or description
+  - Highlight matching keywords
+  - "No results" message when no matches found  
+
+---
+
+## **Components**
+
+- **NewsCard:** Displays image, title, short description, and category  
+- **Pagination:** Server-side pagination links using query parameters  
+- Both components are TypeScript-based and fully reusable  
+
+---
+
+## **SEO Setup**
+
+- **robots.txt** placed in `/public`:
+
+```txt
+User-agent: *
+Allow: /
+Sitemap: https://yourdomain.com/sitemap.xml
+sitemap.xml placed in /public or generated dynamically:
+
+Includes Home Page, Categories, News Detail Pages, and important search keywords
+
+Meta Tags & Open Graph included in News Detail pages using Next.js Metadata API
+
+Getting Started
+Install dependencies:
+
+bash
+Copy code
+npm install
+# or
+yarn install
+Run development server:
+
+bash
+Copy code
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Visit the app:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Home: http://localhost:3000/
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+News Detail: http://localhost:3000/news/1
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Search: http://localhost:3000/search?q=AI
 
-## Learn More
+Future Improvements
+Dynamic search result pagination
 
-To learn more about Next.js, take a look at the following resources:
+Fetch real data from a news API instead of dummy data
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Add user authentication and saved articles
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Improve styling with Tailwind CSS or other design system
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
