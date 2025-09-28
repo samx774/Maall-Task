@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.container {
+  @apply px-3 mx-auto
+}
+
+.active {
+  @apply text-[#ffae00]
+}
