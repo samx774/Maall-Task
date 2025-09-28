@@ -1,4 +1,5 @@
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 interface Props {
   currentPage: number;
@@ -7,6 +8,7 @@ interface Props {
 }
 
 export default function Pagination({ currentPage, totalPages, category }: Props) {
+  const t = useTranslations();
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const getHref = (page: number) => {
@@ -19,7 +21,7 @@ export default function Pagination({ currentPage, totalPages, category }: Props)
         href={getHref(currentPage - 1)}
         className={`px-3 py-1 border rounded ${currentPage === 1 ? "opacity-50 pointer-events-none" : ""}`}
       >
-        Prev
+        {t("pagination.prev")}
       </Link>
 
       {pages.map((page) => (
@@ -36,7 +38,7 @@ export default function Pagination({ currentPage, totalPages, category }: Props)
         href={getHref(currentPage + 1)}
         className={`px-3 py-1 border rounded ${currentPage === totalPages ? "opacity-50 pointer-events-none" : ""}`}
       >
-        Next
+        {t("pagination.next")}
       </Link>
     </div>
   );

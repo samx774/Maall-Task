@@ -5,5 +5,9 @@
     "navbar":{
         "search": "بحث",
         "language": "English"
+    },
+    "pagination":{
+        "prev": "السابق",
+        "next": "التالي"
     }
 }
