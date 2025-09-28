@@ -29,7 +29,7 @@ A modern **Next.js 13+** news application built with **TypeScript** and **Server
 - **Server Components:** All pages are server-rendered, no client-side state required  
 - **SEO Ready:** Metadata, Open Graph, robots.txt, and sitemap.xml for search engines  
 
-<img src="/test.png" width="100%"/>
+<img src="./test.png" width="100%"/>
 
 
 ---
