@@ -1,7 +1,9 @@
-import { NextIntlClientProvider } from "next-intl";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
 import Navbar from "../_components/Navbar";
 import './globals.css';
 import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
 
 type Props = {
     children: React.ReactNode;
@@ -14,6 +16,9 @@ export const metadata = {
 
 export default async function LocaleLayout({ children, params }: Props) {
     const { lang } = await params;
+    if (!hasLocale(routing.locales, lang)) {
+        notFound();
+    }
     const dir = lang === "ar" ? "rtl" : "ltr"
     const messages = await getMessages();
     return (

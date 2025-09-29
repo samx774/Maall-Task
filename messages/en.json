@@ -9,5 +9,10 @@
     "pagination":{
         "prev": "Previous",
         "next": "Next"
+    },
+    "search":{
+        "title": "Search News",
+        "description": "Search for news articles",
+        "noResults": "No results found for &quot;{keyword}&quot;"
     }
 }

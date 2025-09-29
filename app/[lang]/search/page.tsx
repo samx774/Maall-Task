@@ -1,5 +1,6 @@
 import dummyNewsData, { NewsItem } from "@/news";
 import NewsCard from "@/app/_components/NewsCard";
+import { getTranslations } from "next-intl/server";
 
 interface Props {
     searchParams: {
@@ -13,6 +14,7 @@ export const metadata = {
 }
 
 export default async function SearchPage({ searchParams }: Props) {
+    const t = await getTranslations();
     const { q } = await searchParams;
     const keyword = q?.toLowerCase() || "";
 
@@ -39,13 +41,13 @@ export default async function SearchPage({ searchParams }: Props) {
 
     return (
         <div className="container mx-auto p-6">
-            <h1 className="text-3xl font-bold mb-6">Search News</h1>
+            <h1 className="text-3xl font-bold mb-6">{t("search.title")}</h1>
 
             <form method="get" className="mb-6">
                 <input
                     type="text"
                     name="q"
-                    placeholder="Search..."
+                    placeholder={t('navbar.search')}
                     defaultValue={q || ""}
                     className="border p-2 rounded w-full"
                 />
@@ -53,13 +55,12 @@ export default async function SearchPage({ searchParams }: Props) {
                     type="submit"
                     className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
                 >
-                    Search
+                    {t("navbar.search")}
                 </button>
             </form>
 
-            {/* Results */}
             {keyword && filteredNews.length === 0 && (
-                <p>No results found for &quot;{keyword}&quot;</p>
+                <p>{t("search.noResults", { keyword })}</p>
             )}
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

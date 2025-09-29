@@ -2,6 +2,7 @@ import dummyNewsData, { NewsItem } from "@/news";
 import NewsCard from "@/app/_components/NewsCard";
 import { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 interface Props {
     params: {
@@ -42,7 +43,7 @@ export default async function NewsDetail({ params }: Props) {
     const { id } = await params;
     const news = getNewsById(parseInt(id));
 
-    if (!news) return <div>News not found</div>;
+    if (!news) return notFound();
 
     const relatedArticles = getRelatedArticles(news);
 
