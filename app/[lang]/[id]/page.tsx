@@ -1,15 +1,15 @@
 import dummyNewsData, { NewsItem } from "@/news";
 import NewsCard from "@/app/_components/NewsCard";
 import { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
+import ImageFallback from "@/app/_components/ImageFallback";
 
 interface Props {
     params: {
         id: string;
     };
 }
- export const revalidate = 60;
+export const revalidate = 60;
 function getNewsById(id: number): NewsItem | undefined {
     return dummyNewsData.find((n) => n.id === id);
 }
@@ -51,13 +51,7 @@ export default async function NewsDetail({ params }: Props) {
         <div className="container p-6">
             <div className="mb-10">
                 <div className="relative h-100">
-                    <Image
-                        src={news.image}
-                        alt={news.title}
-                        fill
-                        priority
-                        className="w-full object-cover rounded-md mb-4"
-                    />
+                    <ImageFallback fill src={news.image} priority alt={news.title} fallbackSrc="/fallback.png" className="w-full object-cover" />
                 </div>
                 <h1 className="text-3xl font-bold mb-2">{news.title}</h1>
                 <span className="text-sm text-gray-500">{news.category}</span>
