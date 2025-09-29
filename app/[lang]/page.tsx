@@ -4,6 +4,7 @@ import NewsCard from "@/app/_components/NewsCard";
 import Pagination from "@/app/_components/Pagination";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
+import { getLocale } from "next-intl/server";
 
 interface Props {
   searchParams: {
@@ -15,15 +16,16 @@ interface Props {
 const ITEMS_PER_PAGE = 12;
 
 export default async function HomePage({ searchParams }: Props) {
+  const locale = await getLocale();
   const {category, page} = await searchParams;
   const categ =  category || "All";
   const currentPage = parseInt(page || "1");
 
 
   const filteredNews: NewsItem[] =
-  categ === "All"
+  categ ===  "All"
       ? dummyNewsData
-      : dummyNewsData.filter((n) => n.category === categ);
+      : dummyNewsData.filter((n) => locale === "ar" ? n.categoryAr === categ : n.category === categ);
 
   if (currentPage < 1) return notFound();
 
@@ -35,7 +37,7 @@ export default async function HomePage({ searchParams }: Props) {
     currentPage * ITEMS_PER_PAGE
   );
 
-  const categories = ["All", ...Array.from(new Set(dummyNewsData.map((n) => n.category)))];
+  const categories = ["All", ...Array.from(new Set(dummyNewsData.map((n) =>  locale === "ar" ? n.categoryAr : n.category)))];
 
   return (
     <div className="container my-10">
@@ -55,7 +57,7 @@ export default async function HomePage({ searchParams }: Props) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayedNews.map((news) => (
-          <NewsCard key={news.id} news={news} />
+          <NewsCard locale={locale} key={news.id} news={news} />
         ))}
       </div>
 

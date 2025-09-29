@@ -1,6 +1,6 @@
 import dummyNewsData, { NewsItem } from "@/news";
 import NewsCard from "@/app/_components/NewsCard";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 interface Props {
     searchParams: {
@@ -14,6 +14,7 @@ export const metadata = {
 }
 
 export default async function SearchPage({ searchParams }: Props) {
+    const locale = await getLocale();
     const t = await getTranslations();
     const { q } = await searchParams;
     const keyword = q?.toLowerCase() || "";
@@ -22,6 +23,7 @@ export default async function SearchPage({ searchParams }: Props) {
         ? dummyNewsData.filter(
             (n: NewsItem) =>
                 n.title.toLowerCase().includes(keyword)
+                || n.titleAr.toLowerCase().includes(keyword)
         )
         : [];
 
@@ -65,12 +67,15 @@ export default async function SearchPage({ searchParams }: Props) {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredNews.map((news) => (
-                    <div key={news.id}>
+                    <div className="h-full" key={news.id}>
                         <NewsCard
+                            locale={locale}
                             news={{
                                 ...news,
                                 title: highlightText(news.title) as unknown as string,
                                 description: highlightText(news.description) as unknown as string,
+                                titleAr: highlightText(news.titleAr) as unknown as string,
+                                descriptionAr: highlightText(news.descriptionAr) as unknown as string,
                             }}
                         />
                     </div>
