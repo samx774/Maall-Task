@@ -39,6 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
+
 export default async function NewsDetail({ params }: Props) {
     const { id } = await params;
     const news = getNewsById(parseInt(id));
@@ -51,7 +52,7 @@ export default async function NewsDetail({ params }: Props) {
         <div className="container p-6">
             <div className="mb-10">
                 <div className="relative h-100">
-                    <ImageFallback fill src={news.image} priority alt={news.title} fallbackSrc="/fallback.png" className="w-full object-cover" />
+                    <ImageFallback blurDataURL='/fallback.png' placeholder="blur" fill src={news.image} priority alt={news.title} fallbackSrc="/fallback.png" className="w-full object-cover" />
                 </div>
                 <h1 className="text-3xl font-bold mb-2">{news.title}</h1>
                 <span className="text-sm text-gray-500">{news.category}</span>
