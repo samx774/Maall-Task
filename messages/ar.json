@@ -13,6 +13,6 @@
     "search":{
         "title": "بحث الأخبار",
         "description": "بحث عن مقالات الأخبار",
-        "noResults": "لا يوجد نتائج للبحث عن &quot;{keyword}&quot;"
+        "noResults": "لا يوجد نتائج للبحث عن {keyword}"
     }
 }
