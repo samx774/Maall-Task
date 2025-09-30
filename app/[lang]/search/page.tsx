@@ -49,6 +49,7 @@ export default async function SearchPage({ searchParams }: Props) {
                 <input
                     type="text"
                     name="q"
+                    autoFocus
                     placeholder={t('navbar.search')}
                     defaultValue={q || ""}
                     className="border p-2 rounded w-full"
